@@ -10,3 +10,6 @@ oc start-build bc/java-binary-build \
 
 --follow
 
+---------------------------------------
+url.properties
+api.web.noauth.context.url=/upi/noaouth
