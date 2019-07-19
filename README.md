@@ -13,3 +13,8 @@ oc start-build bc/java-binary-build \
 ---------------------------------------
 url.properties
 api.web.noauth.context.url=/upi/noaouth
+
+----------------------------------------------
+
+openssl verify -CAfile /etc/origin/master/ca.crt /etc/origin/master/master.server.crt
+/etc/origin/master/master.server.crt: OK
