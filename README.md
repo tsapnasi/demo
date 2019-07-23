@@ -25,3 +25,6 @@ $ oc extract secret/my-cluster-cluster-ca-cert --keys=ca.crt --to=- > src/main/r
 
 Import the trusted cert to a keystore
 $ keytool -import -trustcacerts -alias root -file src/main/resources/ca.crt -keystore src/main/resources/keystore.jks -storepass password -noprompt
+-----------------------------------------------------------------------------
+
+http://gogs-.icd-ocpadmin.cloudapps.onlinesbi.com/sbi/sbi-demo.git
