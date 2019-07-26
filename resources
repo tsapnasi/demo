@@ -16,6 +16,8 @@ App Build
 docker build -t upi .
 docker tag upi docker-registry.default.svc:5000/sbiupidemo/upi
 docker push docker-registry.default.svc:5000/sbiupidemo/upi
+oc new-app upi
+ oc rollout latest 
  certificate - D:\working cert , 
 edge termination
 First - doamin ca cert
