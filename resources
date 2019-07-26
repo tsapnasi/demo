@@ -1,0 +1,46 @@
+App Docker file content:
+
+FROM registry.redhat.io/jboss-webserver-3/webserver31-tomcat8-openshift
+COPY ROOT.war /deployments
+COPY log4j2.xml /home/jboss
+RUN mkdir /home/jboss/logs
+COPY hsm.config /home/jboss
+RUN chmod 777 -R /opt/webserver/bin
+CMD ["/opt/webserver/bin/launch.sh"]
+
+-------------------------------------
+
+App Build
+----------------------
+
+docker build -t upi .
+docker tag upi docker-registry.default.svc:5000/sbiupidemo/upi
+docker push docker-registry.default.svc:5000/sbiupidemo/upi
+ certificate - D:\working cert , 
+edge termination
+First - doamin ca cert
+second - pvt key
+last - cafile
+
+---------------------------------------------------------
+App2 BUild
+---------------------
+Docker file content:
+FROM registry.redhat.io/openjdk/openjdk-8-rhel8
+WORKDIR /
+ADD recon-engine-service-taskmanager-1.0.0.jar recon-engine-service-taskmanager-1.0.0.jar
+CMD ["java","-jar","recon-engine-service-taskmanager-1.0.0.jar"]
+---------------------------
+
+Environment variables
+reconSecretPath = /data
+reconSecretName = Set to the key recon_secrets.json in secret recon
+
+
+docker build -t gcons .
+docker tag gcons docker-registry.default.svc:5000/sbigconstest/gcons:v1
+docker push docker-registry.default.svc:5000/sbigconstest/gcons:v1
+oc new-app gcons:v1
+--------------------------------------------------
+docker login docker-registry.default.svc:5000 -u $(oc whoami) -p $(oc whoami -t)
+-----------------------------------
